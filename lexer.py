@@ -3,6 +3,11 @@ import re
 # Define token types and their regex patterns
 token_specification = [
     ('NUMBER', r'\d+(\.\d*)?'),
+    ('PI', r'pi'),
+    ('E', r'e'),
+    ('SIN', r'sin'),
+    ('COS', r'cos'),
+    ('TAN', r'tan'),
     ('PLUS', r'\+'),
     ('MINUS', r'-'),
     ('TIMES', r'\*'),
@@ -11,6 +16,7 @@ token_specification = [
     ('RPAREN', r'\)'),
     ('EOF', r'$'),
 ]
+
 token_regex = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in token_specification)
 
 def tokenize(text):
