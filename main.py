@@ -1,24 +1,8 @@
-import os
-import json
 from lexer import tokenize
 from parser import Parser
 from evaluator import Evaluator
 
-STORAGE_FILE = 'variables.json'
-
 variables = {}
-
-def load_variables():
-    """Load saved variables from the JSON file."""
-    if os.path.exists(STORAGE_FILE):
-        with open(STORAGE_FILE, 'r') as f:
-            return json.load(f)
-    return {}
-
-def save_variables():
-    """Save variables to a JSON file."""
-    with open(STORAGE_FILE, 'w') as f:
-        json.dump(variables, f)
 
 def evaluate_expression(expression):
     """Tokenize, parse, and evaluate the given mathematical expression."""
@@ -60,8 +44,6 @@ def main():
     print("Welcome to the Math Interpreter!")
     print("Type 'help' for a list of available commands.")
 
-    variables = load_variables()
-
     while True:
         try:
 
@@ -72,7 +54,6 @@ def main():
                 continue
 
             if expression.lower() in ['exit', 'quit', 'Ctrl + C']:
-                save_variables()
                 print("Exiting the interpreter. Goodbye!")
                 break
 
@@ -87,7 +68,6 @@ def main():
 
         except KeyboardInterrupt:
             print("\nExiting the interpreter. Goodbye!")
-            save_variables()
             break
         except Exception as e:
             print(f"Error: {e}")
