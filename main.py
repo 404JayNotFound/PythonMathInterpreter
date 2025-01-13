@@ -30,30 +30,25 @@ def display_help():
     print("""
 Available Commands:
 -------------------
-- help        : Show this help message.
-- exit, quit  : Exit the interpreter.
+- exit, quit, Ctrl + C  : Exit the interpreter.
 - <variable> = <expression> : Assign value to a variable.
 - <expression> : Evaluate a mathematical expression.
-- Ctrl + C     : Exit the interpreter.
     """)
 
 def main():
     """Main function to run the math interpreter."""
-    global variables
-
     print("Welcome to the Math Interpreter!")
     print("Type 'help' for a list of available commands.")
 
     while True:
         try:
-
             expression = input("\nEnter expression: ")
 
             if expression.lower() == 'help':
                 display_help()
                 continue
 
-            if expression.lower() in ['exit', 'quit', 'Ctrl + C']:
+            if expression.lower() in ['exit', 'quit']:
                 print("Exiting the interpreter. Goodbye!")
                 break
 
