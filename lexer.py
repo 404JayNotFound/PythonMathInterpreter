@@ -1,6 +1,5 @@
 import re
 
-# Define token types and their regex patterns
 token_specification = [
     ('NUMBER', r'\d+(\.\d*)?'),
     ('PI', r'pi'),
@@ -12,6 +11,8 @@ token_specification = [
     ('MINUS', r'-'),
     ('TIMES', r'\*'),
     ('DIVIDE', r'/'),
+    ('EXPONENT', r'\^'),
+    ('SQRT', r'sqrt'),
     ('LPAREN', r'\('),
     ('RPAREN', r'\)'),
     ('EOF', r'$'),
