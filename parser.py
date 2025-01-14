@@ -1,5 +1,5 @@
 import math
-from nodes import NumberNode, BinaryOpNode, FunctionCallNode, VariableNode
+from nodes import NumberNode, BinaryOpNode, FunctionCallNode, VariableNode, UnaryOpNode
 
 class Parser:
     def __init__(self, tokens):
@@ -21,8 +21,17 @@ class Parser:
 
     def term(self):
         """Handle multiplication and division."""
-        node = self.factor()
+        node = self.exponent()
         while self.current_token() and self.current_token()[0] in ['TIMES', 'DIVIDE']:
+            op = self.consume()[1]
+            right = self.exponent()
+            node = BinaryOpNode(node, op, right)
+        return node
+
+    def exponent(self):
+        """Handle exponentiation."""
+        node = self.factor()
+        while self.current_token() and self.current_token()[0] == 'EXPONENT':
             op = self.consume()[1]
             right = self.factor()
             node = BinaryOpNode(node, op, right)
@@ -35,7 +44,7 @@ class Parser:
         if token[0] == 'NUMBER':
             return NumberNode(float(self.consume()[1]))
         elif token[0] == 'VARIABLE':
-            return VariableNode(self.consume()[1])  # Handle variables
+            return VariableNode(self.consume()[1])
         elif token[0] == 'PI':
             self.consume()
             return NumberNode(math.pi)
@@ -47,17 +56,21 @@ class Parser:
             node = self.expression()
             self.consume()  # consume ')'
             return node
-        elif token[0] in ['SIN', 'COS', 'TAN']:
+        elif token[0] in ['PLUS', 'MINUS']:
+            op = self.consume()[1]
+            node = self.factor()
+            return UnaryOpNode(op, node)
+        elif token[0] in ['SIN', 'COS', 'TAN', 'SQRT']:
             return self.function_call()
         else:
             raise SyntaxError(f"Unexpected token: {token}")
 
     def function_call(self):
-        """Handle functions like sin, cos, tan."""
+        """Handle functions like sin, cos, tan, sqrt."""
         func_name = self.consume()[1]
-        self.consume()  # consume '('
+        self.consume()
         arg = self.expression()
-        self.consume()  # consume ')'
+        self.consume()
         return FunctionCallNode(func_name, [arg])
 
     def current_token(self):
