@@ -1,5 +1,5 @@
 import math
-from nodes import NumberNode, BinaryOpNode, VariableNode, FunctionCallNode
+from nodes import NumberNode, BinaryOpNode, VariableNode, FunctionCallNode, UnaryOpNode
 
 variables = {}
 
@@ -12,10 +12,14 @@ class Evaluator:
             left_value = self.evaluate(node.left)
             right_value = self.evaluate(node.right)
             return self.apply_operator(node.operator, left_value, right_value)
+        elif isinstance(node, UnaryOpNode):
+            value = self.evaluate(node.operand)
+            return self.apply_unary_operator(node.operator, value)
         elif isinstance(node, VariableNode):
             return variables.get(node.name, 0)
         elif isinstance(node, FunctionCallNode):
-            return self.apply_function(node.name, node.arguments)
+            evaluated_args = [self.evaluate(arg) for arg in node.arguments]
+            return self.apply_function(node.name, evaluated_args)
 
     def apply_operator(self, operator, left, right):
         """Apply binary operators."""
@@ -27,19 +31,31 @@ class Evaluator:
             return left * right
         elif operator == '/':
             return left / right
+        elif operator == '^':
+            return left ** right
         else:
             raise ValueError(f"Unknown operator: {operator}")
 
+    def apply_unary_operator(self, operator, operand):
+        """Apply unary operators."""
+        if operator == '+':
+            return +operand
+        elif operator == '-':
+            return -operand
+        else:
+            raise ValueError(f"Unknown unary operator: {operator}")
+
     def apply_function(self, name, arguments):
         """Apply mathematical functions."""
-        argument = self.evaluate(arguments[0])
+        argument = arguments[0]
+        
         if name == 'sin':
             return math.sin(argument)
         elif name == 'cos':
             return math.cos(argument)
         elif name == 'tan':
             return math.tan(argument)
-        elif name == 'log':
-            return math.log(argument)
+        elif name == 'sqrt':
+            return math.sqrt(argument)
         else:
             raise ValueError(f"Unknown function: {name}")
