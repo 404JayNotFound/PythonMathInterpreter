@@ -1,5 +1,5 @@
 import math
-from nodes import NumberNode, BinaryOpNode, FunctionCallNode, VariableNode, UnaryOpNode
+from math_interpreter.core.nodes import NumberNode, BinaryOpNode, FunctionCallNode, VariableNode, UnaryOpNode
 
 class Parser:
     def __init__(self, tokens):
