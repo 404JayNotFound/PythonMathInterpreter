@@ -1,5 +1,5 @@
 import math
-from nodes import NumberNode, BinaryOpNode, VariableNode, FunctionCallNode, UnaryOpNode
+from math_interpreter.core.nodes import NumberNode, BinaryOpNode, VariableNode, FunctionCallNode, UnaryOpNode
 
 variables = {}
 
