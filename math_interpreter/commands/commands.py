@@ -1,7 +1,7 @@
-from evaluator import Evaluator
-from lexer import tokenize
-from parser import Parser
-from variables import variables, history
+from math_interpreter.core.evaluator import Evaluator
+from math_interpreter.core.lexer import tokenize
+from math_interpreter.core.parser import Parser
+from math_interpreter.variables import variables, history
 
 def evaluate_expression(expression):
     """Tokenize, parse, and evaluate the given mathematical expression."""
