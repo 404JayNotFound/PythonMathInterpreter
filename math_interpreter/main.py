@@ -1,5 +1,5 @@
-from commands import evaluate_expression, handle_variable_assignment, display_help, clear_workspace, list_variables, show_history, exit_interpreter
-from variables import variables
+from math_interpreter.commands.commands import evaluate_expression, handle_variable_assignment, display_help, clear_workspace, list_variables, show_history, exit_interpreter
+from math_interpreter.variables import variables
 
 def main():
     """Main function to run the math interpreter."""
@@ -18,16 +18,9 @@ def main():
     while True:
         try:
             expression = input("\nEnter expression: ")
-
-            command = expression.lower()
-            if command in commands:
-                exit_flag = commands[command]()
-                if exit_flag is False:
-                    break
-
-                continue
-
-            if '=' in expression:
+            if expression.lower() in commands:
+                commands[expression.lower()]()
+            elif '=' in expression:
                 handle_variable_assignment(expression)
             else:
                 for var_name in variables:
