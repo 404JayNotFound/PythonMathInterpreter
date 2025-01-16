@@ -4,6 +4,10 @@ from math_interpreter.core.nodes import NumberNode, BinaryOpNode, VariableNode, 
 variables = {}
 
 class Evaluator:
+    def __init__(self, variables=None):
+        """Initialize the evaluator with optional variables."""
+        self.variables = variables if variables is not None else {}
+        
     def evaluate(self, node):
         """Evaluate the AST node."""
         if isinstance(node, NumberNode):
@@ -16,7 +20,7 @@ class Evaluator:
             value = self.evaluate(node.operand)
             return self.apply_unary_operator(node.operator, value)
         elif isinstance(node, VariableNode):
-            return variables.get(node.name, 0)
+            return self.variables.get(node.name, 0)
         elif isinstance(node, FunctionCallNode):
             evaluated_args = [self.evaluate(arg) for arg in node.arguments]
             return self.apply_function(node.name, evaluated_args)
