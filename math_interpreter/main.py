@@ -18,16 +18,22 @@ def main():
     while True:
         try:
             expression = input("\nEnter expression: ")
+
             if expression.lower() in commands:
                 commands[expression.lower()]()
+
             elif '=' in expression:
                 handle_variable_assignment(expression)
+
             else:
                 for var_name in variables:
                     expression = expression.replace(var_name, str(variables[var_name]))
-
-                result = evaluate_expression(expression)
-                print(f"Result: {result}")
+                try:
+                    result = evaluate_expression(expression)
+                    print(f"Result: {result}")
+                except Exception as e:
+                    print(f"Unknown command or invalid expression")
+                    print("Type 'help' for a list of available commands.")
 
         except KeyboardInterrupt:
             print("\nExiting the interpreter. Goodbye!")
