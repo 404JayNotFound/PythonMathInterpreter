@@ -27,6 +27,7 @@ def tokenize(text):
     for mo in re.finditer(token_regex, text):
         kind = mo.lastgroup
         value = mo.group()
+  
         if kind == 'NUMBER':
             value = float(value)
         elif kind == 'EOF':
