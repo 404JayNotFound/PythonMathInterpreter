@@ -52,9 +52,9 @@ class Parser:
             self.consume()
             return NumberNode(math.e)
         elif token[0] == 'LPAREN':
-            self.consume()  # consume '('
+            self.consume()
             node = self.expression()
-            self.consume()  # consume ')'
+            self.consume()
             return node
         elif token[0] in ['PLUS', 'MINUS']:
             op = self.consume()[1]
