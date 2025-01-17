@@ -33,7 +33,7 @@ Available Commands:
 ----------------------
 - exit, quit, Ctrl + C    : Exit the interpreter and stop the session.
 - <variable> = <expression> : Assign a value to a variable. You can use variables in expressions (e.g., 'x = 5', 'y = x + 2').
-- <expression>            : Evaluate a mathematical expression. This could include basic arithmetic, functions (like sin, cos), and constants (like pi, e). Example: '3 + 2 * sin(3)' or 'pi + 2'.
+- <expression>            : Evaluate a mathematical expression. This could include basic arithmetic, functions, and constants.
 - help                    : Show this list of available commands to guide you through using the interpreter.
 - clear                   : Clear the current workspace, including all variables and functions stored in memory.
 - list                    : Display all currently defined variables and their values.
