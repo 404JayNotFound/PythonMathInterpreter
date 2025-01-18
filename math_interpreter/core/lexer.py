@@ -2,6 +2,7 @@ import re
 
 allowed_chars = set("0123456789+-*/^()=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ")
 
+# Token specifications
 token_specification = [
     ('NUMBER', r'\d+(\.\d*)?'),
     ('PI', r'pi'),
@@ -9,17 +10,22 @@ token_specification = [
     ('SIN', r'sin'),
     ('COS', r'cos'),
     ('TAN', r'tan'),
+    ('ASIN', r'asin'),
+    ('ACOS', r'acos'),
+    ('ATAN', r'atan'),
+    ('SQRT', r'sqrt'),
     ('PLUS', r'\+'),
     ('MINUS', r'-'),
     ('TIMES', r'\*'),
     ('DIVIDE', r'/'),
     ('EXPONENT', r'\^'),
-    ('SQRT', r'sqrt'),
     ('LPAREN', r'\('),
     ('RPAREN', r'\)'),
+    ('VARIABLE', r'[a-zA-Z]+'),
     ('EOF', r'$'),
 ]
 
+# Join all token patterns into one regex
 token_regex = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in token_specification)
 
 def tokenize(text):
