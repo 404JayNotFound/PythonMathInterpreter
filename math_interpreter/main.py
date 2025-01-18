@@ -21,8 +21,12 @@ def main():
             expression = input("\nEnter expression: ")
             validate_input(expression)
 
-            if expression.lower() in commands:
-                commands[expression.lower()]()
+            command = expression.lower().strip()
+            if command in commands:
+                commands[command]()
+                if command in ['exit', 'quit']:
+                    break
+                continue
 
             elif '=' in expression:
                 handle_variable_assignment(expression)
