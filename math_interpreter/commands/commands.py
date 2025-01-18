@@ -38,6 +38,13 @@ Available Commands:
 - clear                   : Clear the current workspace, including all variables and functions stored in memory.
 - list                    : Display all currently defined variables and their values.
 - history                 : View a list of previously evaluated expressions in the current session.
+          
+Examples:
+---------
+1. Evaluate: `3 + 5 * 2` → Result: 13
+2. Use a function: `sin(pi / 2)` → Result: 1.0
+3. Assign a variable: `x = 10`
+4. Use a variable: `x + 5` → Result: 15
     """)
 
 def clear_workspace():
