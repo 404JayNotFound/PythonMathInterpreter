@@ -59,11 +59,13 @@ class Evaluator:
             return math.cos(argument)
         elif name == 'tan':
             return math.tan(argument)
+        elif name == 'asin':
+            return math.asin(argument)
+        elif name == 'acos':
+            return math.acos(argument)
+        elif name == 'atan':
+            return math.atan(argument)
         elif name == 'sqrt':
             return math.sqrt(argument)
         else:
             raise ValueError(f"Unknown function: {name}")
-
-    def handle_invalid_syntax(expression):
-        """Handle invalid syntax errors and suggest corrections."""
-        raise ValueError(f"Syntax Error: Invalid syntax in '{expression}'. Type 'help' for guidance.")
