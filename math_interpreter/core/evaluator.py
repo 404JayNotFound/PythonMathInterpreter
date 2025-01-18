@@ -63,3 +63,7 @@ class Evaluator:
             return math.sqrt(argument)
         else:
             raise ValueError(f"Unknown function: {name}")
+
+    def handle_invalid_syntax(expression):
+        """Handle invalid syntax errors and suggest corrections."""
+        raise ValueError(f"Syntax Error: Invalid syntax in '{expression}'. Type 'help' for guidance.")

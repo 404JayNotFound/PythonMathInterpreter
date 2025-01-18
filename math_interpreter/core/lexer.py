@@ -1,5 +1,7 @@
 import re
 
+allowed_chars = set("0123456789+-*/^()=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ")
+
 token_specification = [
     ('NUMBER', r'\d+(\.\d*)?'),
     ('PI', r'pi'),
@@ -33,3 +35,10 @@ def tokenize(text):
         elif kind == 'EOF':
             break
         yield kind, value
+
+def validate_input(expression):
+    """Check if the input expression is valid."""
+    if any(char not in allowed_chars for char in expression):
+        raise ValueError(f"Invalid character in '{expression}'.")
+    if expression.count('(') != expression.count(')'):
+        raise ValueError(f"Mismatched parentheses in '{expression}'.")

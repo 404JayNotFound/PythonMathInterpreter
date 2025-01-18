@@ -1,5 +1,6 @@
 from math_interpreter.commands.commands import evaluate_expression, handle_variable_assignment, display_help, clear_workspace, list_variables, show_history, exit_interpreter
 from math_interpreter.variables import variables
+from math_interpreter.core.lexer import validate_input
 
 def main():
     """Main function to run the math interpreter."""
@@ -18,6 +19,7 @@ def main():
     while True:
         try:
             expression = input("\nEnter expression: ")
+            validate_input(expression)
 
             if expression.lower() in commands:
                 commands[expression.lower()]()
@@ -39,7 +41,7 @@ def main():
             print("\nExiting the interpreter. Goodbye!")
             break
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"{e}")
 
 if __name__ == "__main__":
     main()
