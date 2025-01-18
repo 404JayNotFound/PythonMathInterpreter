@@ -60,13 +60,13 @@ class Parser:
             op = self.consume()[1]
             node = self.factor()
             return UnaryOpNode(op, node)
-        elif token[0] in ['SIN', 'COS', 'TAN', 'SQRT']:
+        elif token[0] in ['SIN', 'COS', 'TAN', 'SQRT', 'ASIN', 'ACOS', 'ATAN']:
             return self.function_call()
         else:
             raise SyntaxError(f"Unexpected token: {token}")
 
     def function_call(self):
-        """Handle functions like sin, cos, tan, sqrt."""
+        """Handle functions like sin, cos, tan, sqrt, asin, acos, atan."""
         func_name = self.consume()[1]
         self.consume()
         arg = self.expression()
