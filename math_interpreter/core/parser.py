@@ -8,7 +8,12 @@ class Parser:
 
     def parse(self):
         """Parse the list of tokens into an Abstract Syntax Tree (AST)."""
-        return self.expression()
+        result = self.expression()
+
+        if self.current_token():
+            raise ValueError(f"Unexpected token: {self.current_token()}")
+        
+        return result
 
     def expression(self):
         """Handle addition and subtraction."""
@@ -38,7 +43,7 @@ class Parser:
         return node
 
     def factor(self):
-        """Handle numbers, variables, functions, and parenthesized expressions."""
+        """Handle numbers, variables, parentheses, and unary operators."""
         token = self.current_token()
         
         if token[0] == 'NUMBER':
@@ -54,7 +59,10 @@ class Parser:
         elif token[0] == 'LPAREN':
             self.consume()
             node = self.expression()
-            self.consume()
+            if self.current_token() and self.current_token()[0] == 'RPAREN':
+                self.consume()
+            else:
+                raise ValueError("Mismatched parentheses")
             return node
         elif token[0] in ['PLUS', 'MINUS']:
             op = self.consume()[1]
@@ -63,10 +71,10 @@ class Parser:
         elif token[0] in ['SIN', 'COS', 'TAN', 'SQRT', 'ASIN', 'ACOS', 'ATAN']:
             return self.function_call()
         else:
-            raise SyntaxError(f"Unexpected token: {token}")
+            raise ValueError(f"Unexpected token: {token}")
 
     def function_call(self):
-        """Handle functions like sin, cos, tan, sqrt, asin, acos, atan."""
+        """Handle function calls."""
         func_name = self.consume()[1]
         self.consume()
         arg = self.expression()
@@ -74,13 +82,13 @@ class Parser:
         return FunctionCallNode(func_name, [arg])
 
     def current_token(self):
-        """Return the current token, or None if there are no more tokens."""
+        """Return the current token without consuming it."""
         if self.pos < len(self.tokens):
             return self.tokens[self.pos]
         return None
 
     def consume(self):
-        """Consume and return the current token."""
+        """Return the current token and move to the next one."""
         token = self.current_token()
         self.pos += 1
         return token
