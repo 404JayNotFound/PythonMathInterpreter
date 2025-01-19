@@ -30,7 +30,7 @@ token_regex = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in token_specificati
 
 def tokenize(text):
     """
-    Tokenizes the input text into a sequence of tokens using regular expressions.
+    Tokenize the input text using the token_specification.
     """
     for mo in re.finditer(token_regex, text):
         kind = mo.lastgroup
