@@ -5,11 +5,11 @@ variables = {}
 
 class Evaluator:
     def __init__(self, variables=None):
-        """Initialize the evaluator with optional variables."""
+        """Initialize the evaluator with variables."""
         self.variables = variables if variables is not None else {}
         
     def evaluate(self, node):
-        """Evaluate the AST node."""
+        """Evaluate the expression tree."""
         if isinstance(node, NumberNode):
             return node.value
         elif isinstance(node, BinaryOpNode):
