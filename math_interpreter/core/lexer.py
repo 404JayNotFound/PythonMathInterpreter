@@ -1,8 +1,7 @@
 import re
 
-allowed_chars = set("0123456789+-*/^()=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ")
+disallowed_chars = set("!@#$%^&*[]{}|\\,<>?;:'\"`~")
 
-# Token specifications
 token_specification = [
     ('NUMBER', r'\d+(\.\d*)?'),
     ('PI', r'pi'),
@@ -22,6 +21,7 @@ token_specification = [
     ('LPAREN', r'\('),
     ('RPAREN', r'\)'),
     ('VARIABLE', r'[a-zA-Z]+'),
+    ('WHITESPACE', r'\s+'),
     ('EOF', r'$'),
 ]
 
@@ -32,19 +32,34 @@ def tokenize(text):
     """
     Tokenize the input text using the token_specification.
     """
-    for mo in re.finditer(token_regex, text):
-        kind = mo.lastgroup
-        value = mo.group()
-  
+    for match in re.finditer(token_regex, text):
+        kind = match.lastgroup
+        value = match.group()
+
         if kind == 'NUMBER':
             value = float(value)
-        elif kind == 'EOF':
+
+        if kind == 'WHITESPACE':
+            continue
+
+        if kind == 'EOF':
             break
+
         yield kind, value
 
 def validate_input(expression):
     """Check if the input expression is valid."""
-    if any(char not in allowed_chars for char in expression):
+    if any(char in disallowed_chars for char in expression):
         raise ValueError(f"Invalid character in '{expression}'.")
-    if expression.count('(') != expression.count(')'):
-        raise ValueError(f"Mismatched parentheses in '{expression}'.")
+    
+    stack = []
+    for char in expression:
+        if char == '(':
+            stack.append(char)
+        elif char == ')':
+            if not stack:
+                raise ValueError(f"Unmatched closing parenthesis in '{expression}'.")
+            stack.pop()
+
+    if stack:
+        raise ValueError(f"Unmatched opening parenthesis in '{expression}'.")
