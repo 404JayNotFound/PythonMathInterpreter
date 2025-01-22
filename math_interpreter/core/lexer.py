@@ -1,6 +1,6 @@
 import re
 
-disallowed_chars = set("!@#$%^&*[]{}|\\,<>?;:'\"`~")
+disallowed_chars = set("!@#$%&[]{}|\\,<>?;:'\"`~")
 
 token_specification = [
     ('NUMBER', r'\d+(\.\d*)?'),
