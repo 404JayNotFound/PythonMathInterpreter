@@ -7,7 +7,30 @@ class Evaluator:
     def __init__(self, variables=None):
         """Initialize the evaluator with variables."""
         self.variables = variables if variables is not None else {}
+
+        self.operators = {
+            '+': lambda left, right: left + right,
+            '-': lambda left, right: left - right,
+            '*': lambda left, right: left * right,
+            '/': lambda left, right: left / right,
+            '^': lambda left, right: left ** right,
+        }
         
+        self.unary_operators = {
+            '+': lambda operand: +operand,
+            '-': lambda operand: -operand,
+        }
+        
+        self.functions = {
+            'sin': math.sin,
+            'cos': math.cos,
+            'tan': math.tan,
+            'asin': math.asin,
+            'acos': math.acos,
+            'atan': math.atan,
+            'sqrt': math.sqrt,
+        }
+
     def evaluate(self, node):
         """Evaluate the expression tree."""
         if isinstance(node, NumberNode):
@@ -27,45 +50,20 @@ class Evaluator:
 
     def apply_operator(self, operator, left, right):
         """Apply binary operators."""
-        if operator == '+':
-            return left + right
-        elif operator == '-':
-            return left - right
-        elif operator == '*':
-            return left * right
-        elif operator == '/':
-            return left / right
-        elif operator == '^':
-            return left ** right
-        else:
+        if operator not in self.operators:
             raise ValueError(f"Unknown operator: {operator}")
+        return self.operators[operator](left, right)
 
     def apply_unary_operator(self, operator, operand):
         """Apply unary operators."""
-        if operator == '+':
-            return +operand
-        elif operator == '-':
-            return -operand
-        else:
+        if operator not in self.unary_operators:
             raise ValueError(f"Unknown unary operator: {operator}")
+        return self.unary_operators[operator](operand)
 
     def apply_function(self, name, arguments):
         """Apply mathematical functions."""
-        argument = arguments[0]
-        
-        if name == 'sin':
-            return math.sin(argument)
-        elif name == 'cos':
-            return math.cos(argument)
-        elif name == 'tan':
-            return math.tan(argument)
-        elif name == 'asin':
-            return math.asin(argument)
-        elif name == 'acos':
-            return math.acos(argument)
-        elif name == 'atan':
-            return math.atan(argument)
-        elif name == 'sqrt':
-            return math.sqrt(argument)
-        else:
+        if name not in self.functions:
             raise ValueError(f"Unknown function: {name}")
+        if len(arguments) != 1:
+            raise ValueError(f"Function {name} expects exactly one argument.")
+        return self.functions[name](arguments[0])
