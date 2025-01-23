@@ -94,7 +94,7 @@ The evaluator traverses the AST to compute results.
 
 1. **Clone the Repository**:  
    ``` 
-   git clone https://github.com/yourusername/PythonMathInterpreter.git
+   git clone https://github.com/404JayNotFound/PythonMathInterpreter.git
    cd python-math-interpreter
    ```
 2. **Ensure you have Python 3.6 or later installed.**
