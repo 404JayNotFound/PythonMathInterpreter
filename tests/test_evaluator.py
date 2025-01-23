@@ -53,11 +53,16 @@ class TestEvaluator(unittest.TestCase):
         self.assertEqual(self.evaluator.apply_operator('*', 4, 3), 12)
         self.assertEqual(self.evaluator.apply_operator('/', 10, 2), 5)
         self.assertEqual(self.evaluator.apply_operator('^', 2, 3), 8)
+        
+        self.assertEqual(self.evaluator.apply_operator('-', -5, 3), -8)
+        self.assertEqual(self.evaluator.apply_operator('*', 0, 100), 0)
 
     def test_apply_unary_operator(self):
         """Test unary operators."""
         self.assertEqual(self.evaluator.apply_unary_operator('+', 10), 10)
         self.assertEqual(self.evaluator.apply_unary_operator('-', 10), -10)
+        
+        self.assertEqual(self.evaluator.apply_unary_operator('-', -10), 10)
 
     def test_apply_function(self):
         """Test mathematical functions."""
@@ -65,10 +70,14 @@ class TestEvaluator(unittest.TestCase):
         self.assertEqual(self.evaluator.apply_function('cos', [0]), 1)
         self.assertEqual(self.evaluator.apply_function('tan', [0]), 0)
         self.assertEqual(self.evaluator.apply_function('sqrt', [25]), 5)
+        
+        self.assertEqual(self.evaluator.apply_function('sqrt', [0]), 0)
+        
+        self.assertAlmostEqual(self.evaluator.apply_function('sin', [1e-10]), 1e-10)
+        self.assertAlmostEqual(self.evaluator.apply_function('cos', [1e-10]), 1)
 
     def test_apply_inverse_trig_functions(self):
         """Test inverse trigonometric functions."""
- 
         self.assertEqual(self.evaluator.apply_function('asin', [1]), math.pi / 2)
         self.assertEqual(self.evaluator.apply_function('asin', [-1]), -math.pi / 2)
 
@@ -110,6 +119,24 @@ class TestEvaluator(unittest.TestCase):
         """Test function call with an invalid argument."""
         with self.assertRaises(ValueError):
             self.evaluator.apply_function('sqrt', [-1])
+
+    def test_nested_expression(self):
+        """Test evaluation of nested expressions."""
+        node = BinaryOpNode(
+            left=BinaryOpNode(left=NumberNode(3), operator='+', right=NumberNode(4)),
+            operator='*',
+            right=NumberNode(2)
+        )
+        self.assertEqual(self.evaluator.evaluate(node), 14)
+
+    def test_variable_assignment_and_evaluation(self):
+        """Test variable assignment and evaluation."""
+        self.variables['z'] = 15
+        node = VariableNode('z')
+        self.assertEqual(self.evaluator.evaluate(node), 15)
+        
+        self.variables['z'] = 20
+        self.assertEqual(self.evaluator.evaluate(node), 20)
 
     def tearDown(self):
         """Clean up after each test."""
