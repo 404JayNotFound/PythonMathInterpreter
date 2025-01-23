@@ -77,6 +77,29 @@ class TestLexer(unittest.TestCase):
         tokens = list(tokenize(""))
         self.assertEqual(tokens, [])
 
+    def test_whitespace_handling(self):
+        """Test tokenization with leading, trailing, and multiple spaces."""
+        tokens = list(tokenize("  42  +  3.14  *  pi   "))
+        expected = [
+            ('NUMBER', 42.0),
+            ('PLUS', '+'),
+            ('NUMBER', 3.14),
+            ('TIMES', '*'),
+            ('PI', 'pi')
+        ]
+        self.assertEqual(tokens, expected)
+
+    def test_floating_point_numbers(self):
+        """Test floating point numbers with multiple decimals and scientific notation."""
+        tokens = list(tokenize("3.14159 + 2.5e3"))
+        expected = [
+            ('NUMBER', 3.14159),
+            ('PLUS', '+'),
+            ('NUMBER', 2.5),
+            ('E', 'e'),
+            ('NUMBER', 3.0)
+        ]
+        self.assertEqual(tokens, expected)
 
 if __name__ == '__main__':
     unittest.main()
