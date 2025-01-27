@@ -93,9 +93,9 @@ The evaluator traverses the AST to compute results.
 ## 💻 **Setup Instructions**  
 
 1. **Clone the Repository**:  
-   ``` 
+   ```bash
    git clone https://github.com/404JayNotFound/PythonMathInterpreter.git
-   cd python-math-interpreter
+   cd math-interpreter
    ```
 2. **Ensure you have Python 3.6 or later installed.**
 3. **Install dependencies** (if any).
@@ -104,14 +104,13 @@ The evaluator traverses the AST to compute results.
     ```bash
     python main.py
     ```
+    
 ---
 
 ## 🧪 **Testing**
 The project includes a comprehensive suite of unit tests for the lexer, parser, and evaluator.
 
-###  **Run Tests**
-  Use the following command to execute all tests:
-  ```
+  ```bash
   python -m unittest discover tests
   ```
 
