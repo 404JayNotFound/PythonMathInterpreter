@@ -1,5 +1,10 @@
 # 🧮 **Python Math Interpreter**
 
+![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)
+![License](https://img.shields.io/github/license/404JayNotFound/PythonMathInterpreter)
+![Issues](https://img.shields.io/github/issues/404JayNotFound/PythonMathInterpreter)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+
 An interpreter written from scratch in Python, designed to evaluate mathematical expressions. This interpreter provides a hands-on approach to understanding how computers process human-readable text and perform complex calculations. It serves as an excellent introduction to how interpreters and compilers work, which is essential knowledge when developing your own programming language or data language.
 
 ---
@@ -19,7 +24,7 @@ An interpreter written from scratch in Python, designed to evaluate mathematical
 ---
 
 ## 🧭 **Overview**  
-The **Python Math Interpreter** demonstrates how a computer can transform raw human input (in the form of mathematical expressions) into meaningful output. It breaks down the process into three main stages: tokenization (lexer), parsing (parser), and evaluation (evaluator). These steps mirror the fundamental processes used in programming languages, compilers, and advanced mathematical engines, providing an ideal foundation for learning about how computers interpret data.
+This **Python Math Interpreter** demonstrates how a computer can transform raw human input (in the form of mathematical expressions) into meaningful output. It breaks down the process into three main stages: tokenization (lexer), parsing (parser), and evaluation (evaluator). These steps mirror the fundamental processes used in programming languages, compilers, and advanced mathematical engines, providing an ideal foundation for learning about how computers interpret data.
 
 ---
 
