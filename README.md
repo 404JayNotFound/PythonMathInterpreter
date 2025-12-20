@@ -1,4 +1,4 @@
-# 🧮 **Python Math Interpreter**
+#  **Python Math Interpreter**
 
 ![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)
 ![License](https://img.shields.io/github/license/404JayNotFound/PythonMathInterpreter)
@@ -8,7 +8,7 @@ An interpreter written from scratch in Python, designed to evaluate mathematical
 
 ---
 
-## 📑 **Table of Contents**  
+##  **Table of Contents**  
 1. [Overview](#overview)  
 2. [Features](#features)  
 3. [Core Architecture](#core-architecture)  
@@ -22,12 +22,12 @@ An interpreter written from scratch in Python, designed to evaluate mathematical
 
 ---
 
-## 🧭 **Overview**  
+##  **Overview**  
 This **Python Math Interpreter** demonstrates how a computer can transform raw human input (in the form of mathematical expressions) into meaningful output. It breaks down the process into three main stages: tokenization (lexer), parsing (parser), and evaluation (evaluator). These steps mirror the fundamental processes used in programming languages, compilers, and advanced mathematical engines, providing an ideal foundation for learning about how computers interpret data.
 
 ---
 
-## 🌟 **Features**  
+##  **Features**  
 
 - **Core Arithmetic Operations**: Supports addition, subtraction, multiplication, division, and exponentiation.  
 - **Constants**: Built-in support for mathematical constants like `pi` (3.14159...) and `e` (2.718...).  
@@ -38,7 +38,7 @@ This **Python Math Interpreter** demonstrates how a computer can transform raw h
 
 ---
 
-## 🛠️ **Core Architecture**  
+##  **Core Architecture**  
 
 ### **Workflow Overview**  
 1. **Tokenization**: The input string is first converted into a series of tokens by the lexer.  
@@ -54,7 +54,7 @@ This **Python Math Interpreter** demonstrates how a computer can transform raw h
 
 ---
 
-## 🔍 **Lexer**
+##  **Lexer**
 
 The **lexer** is the first step in processing a mathematical expression. It scans the raw input string and breaks it down into "tokens," which are smaller, meaningful pieces. Think of this like how humans break down a sentence into individual words—each token has its own role in the expression, whether it’s a number, an operator, or a function.
 
@@ -72,7 +72,7 @@ After tokenizing the input, the tokens are passed to the parser for further anal
 
 ---
 
-## 🌲 **Parser**
+##  **Parser**
 
 The **parser** takes the sequence of tokens and uses them to build a hierarchical structure known as the **Abstract Syntax Tree (AST)**. This tree visually represents the relationships between the tokens, just like how a sentence is parsed to understand its meaning and structure. The parser ensures that the mathematical expression follows the correct order of operations.
 
@@ -90,7 +90,7 @@ This AST is then passed to the evaluator for execution.
 
 ---
 
-## 🔄 **Evaluator**
+##  **Evaluator**
 
 The **evaluator** traverses the AST and executes the operations as described by the structure of the tree. The evaluator can be thought of as the **“executor”** of the program—the component that performs the actual calculations.
 
@@ -108,7 +108,7 @@ The evaluator makes use of Python's built-in `math` library for functions like `
 
 ---
 
-## 💻 **Setup Instructions**
+##  **Setup Instructions**
 
 1. **Clone the Repository**:  
    ```bash
@@ -123,7 +123,7 @@ The evaluator makes use of Python's built-in `math` library for functions like `
    ```
 ---
 
-## 🧪 Testing
+##  Testing
 The project includes a comprehensive suite of unit tests for the lexer, parser, and evaluator.
 ```bash
 python -m unittest discover tests
@@ -136,13 +136,13 @@ python -m unittest discover tests
 
 ---
 
-## 🔧 Future Enhancements
+##  Future Enhancements
 - Advanced Mathematical Functions: Add support for more complex functions like logarithms, hyperbolic functions, and advanced constants.
 - Workspace Enhancements: Introduce features for saving and loading variable states, creating more complex user workspaces.
 - Performance Optimizations: Improve performance for handling larger expressions with deep recursion or complex operations.
 - Visualization: Add functionality for graphing mathematical functions to visualize equations in a more interactive manner.
 
-## 💬 Contact
+##  Contact
 Feel free to explore, or reach out for questions. You can contact me via GitHub or email for inquiries related to any specific project. 
 
 ## Contributors
